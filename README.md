@@ -12,6 +12,6 @@ Classe <Mapeamento> Tabelas
 
 ## TypeORM, um ORM para projetos TypeScript
 
-[ ] Mapeia as tabelas em classes
+[X] Mapeia as tabelas em classes
 [ ]Gera classes a partir das tabelas
 [ ]Atualiza a estrutura das tabelas de acordo com as classes através das migrations (Migrações)
