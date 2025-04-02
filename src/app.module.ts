@@ -10,7 +10,6 @@ import { AccountsModule } from './accounts/accounts.module';
       database: 'database.sqlite',
       autoLoadEntities: true,
       synchronize: false,
-      migrations: ['./src/shared/migrations/*.ts'],
     }),
     UsersModule,
     AccountsModule,
