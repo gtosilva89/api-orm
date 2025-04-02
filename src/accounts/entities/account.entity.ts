@@ -1,5 +1,11 @@
 import { User } from 'src/users/entities/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('accounts')
 export class Account {
@@ -13,5 +19,6 @@ export class Account {
   agency_number: number;
 
   @ManyToOne(() => User, (user) => user.accounts)
+  @JoinColumn({ name: 'user_id' })
   user: number;
 }
