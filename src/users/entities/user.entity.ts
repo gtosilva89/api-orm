@@ -24,7 +24,7 @@ export class User {
   @Column()
   address: string;
 
-  @Column()
+  @Column({ default: true })
   active: boolean;
 
   @OneToMany(() => Account, (account) => account.user)
