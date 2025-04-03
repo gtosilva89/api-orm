@@ -1,8 +1,12 @@
 import { DataSource } from 'typeorm';
 
 const AppDataSource = new DataSource({
-  type: 'sqlite',
-  database: 'database.sqlite',
+  type: 'postgres',
+  host: 'localhost',
+  port: 5432,
+  username: 'postgres',
+  password: 'password',
+  database: 'bank',
   entities: ['**/*.entity{.ts,.js}'],
   migrations: ['./src/shared/migrations/*.ts'],
   migrationsRun: false,

@@ -12,9 +12,6 @@ export class User {
   @Column()
   email: string;
 
-  @OneToMany(() => Account, (account) => account.user)
-  accounts: Account[];
-
   @Column()
   document: string;
 
@@ -26,4 +23,10 @@ export class User {
 
   @Column()
   address: string;
+
+  @Column()
+  active: boolean;
+
+  @OneToMany(() => Account, (account) => account.user)
+  accounts: Account[];
 }

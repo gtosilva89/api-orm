@@ -6,8 +6,12 @@ import { AccountsModule } from './accounts/accounts.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'database.sqlite',
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'password',
+      database: 'bank',
       autoLoadEntities: true,
       synchronize: false,
     }),
