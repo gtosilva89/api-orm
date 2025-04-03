@@ -17,7 +17,7 @@ export class AccountsController {
 
   @Post()
   async create(@Body() createAccountDto: CreateAccountDto) {
-    return this.accountsService.create(createAccountDto);
+    return await this.accountsService.create(createAccountDto);
   }
 
   @Get()
