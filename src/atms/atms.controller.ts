@@ -21,8 +21,8 @@ export class AtmsController {
   }
 
   @Get()
-  findAll() {
-    return this.atmsService.findAll();
+  async findAll() {
+    return await this.atmsService.findAll();
   }
 
   @Get(':id')

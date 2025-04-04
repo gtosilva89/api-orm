@@ -19,12 +19,16 @@ export class AtmsService {
     });
   }
 
-  findAll() {
-    return `This action returns all atms`;
+  async findAll() {
+    return await this.atmsRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} atm`;
+  async findOne(id: number) {
+    return await this.atmsRepository.findOne({
+      where: {
+        id,
+      },
+    });
   }
 
   update(id: number, updateAtmDto: UpdateAtmDto) {
