@@ -31,12 +31,12 @@ export class AtmsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAtmDto: UpdateAtmDto) {
-    return this.atmsService.update(+id, updateAtmDto);
+  async update(@Param('id') id: string, @Body() updateAtmDto: UpdateAtmDto) {
+    return await this.atmsService.update(+id, updateAtmDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.atmsService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.atmsService.remove(+id);
   }
 }

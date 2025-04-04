@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateAtmDto } from './dto/create-atm.dto';
 import { UpdateAtmDto } from './dto/update-atm.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -31,11 +31,30 @@ export class AtmsService {
     });
   }
 
-  update(id: number, updateAtmDto: UpdateAtmDto) {
-    return `This action updates a #${id} atm`;
+  async update(id: number, updateAtmDto: UpdateAtmDto) {
+    if (!updateAtmDto.code || updateAtmDto.location) {
+      throw new HttpException(
+        'Código ou Localização invalidos',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    // buscar o registro
+    const atm = await this.atmsRepository.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!atm) {
+      throw new HttpException('ATM não encontrado', HttpStatus.NOT_FOUND);
+    }
+    // atualizar os dados do registro
+    const atmUpdated = Object.assign(atm, updateAtmDto);
+    // salvar o registro atualizado
+    return await this.atmsRepository.save(atmUpdated);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} atm`;
+  async remove(id: number) {
+    return this.atmsRepository.delete(id)
   }
 }
