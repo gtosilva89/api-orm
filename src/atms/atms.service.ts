@@ -2,8 +2,8 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateAtmDto } from './dto/create-atm.dto';
 import { UpdateAtmDto } from './dto/update-atm.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { Atm } from './entities/atm.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AtmsService {
@@ -11,6 +11,7 @@ export class AtmsService {
     @InjectRepository(Atm)
     private atmsRepository: Repository<Atm>,
   ) {}
+
   async create(createAtmDto: CreateAtmDto) {
     return await this.atmsRepository.save({
       ...createAtmDto,
@@ -32,9 +33,9 @@ export class AtmsService {
   }
 
   async update(id: number, updateAtmDto: UpdateAtmDto) {
-    if (!updateAtmDto.code || updateAtmDto.location) {
+    if (!updateAtmDto.code || !updateAtmDto.location) {
       throw new HttpException(
-        'Código ou Localização invalidos',
+        'Código ou Localização inválidos',
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -55,6 +56,6 @@ export class AtmsService {
   }
 
   async remove(id: number) {
-    return this.atmsRepository.delete(id)
+    return this.atmsRepository.delete(id);
   }
 }
