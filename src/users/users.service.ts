@@ -20,6 +20,9 @@ export class UsersService {
       relations: {
         accounts: true,
       },
+      order: {
+        id: 1,
+      },
     });
   }
 }
